@@ -2,10 +2,10 @@ if (!hasProperty('useMavenLocal'))
 {
   repositories {
     maven {
-      url "https://pkgs.dev.azure.com/gbesancon/GitHub/_packaging/github/maven/v1"
+      url "https://maven.pkg.github.com/gbesancon"
       credentials {
         username "gbesancon"
-        password "$System.env.AZURE_DEVOPS_PACKAGE_TOKEN"
+        password "$System.env.GBESANCON_GITHUB_AZURE_DEVOPS_PACKAGE_TOKEN"
       }
     }
   }

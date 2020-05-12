@@ -5,11 +5,11 @@ ext.mavenVersion = version.replaceAll('-.*','-SNAPSHOT')
 publishing {
   repositories {
     maven {
-      name "AzureDevOpsGithub"
-      url "https://pkgs.dev.azure.com/gbesancon/GitHub/_packaging/github/maven/v1"
+      name "GithubGbesancon"
+      url "https://maven.pkg.github.com/gbesancon"
       credentials {
         username "gbesancon"
-        password "$System.env.AZURE_DEVOPS_PACKAGE_TOKEN"
+        password "$System.env.GBESANCON_GITHUB_AZURE_DEVOPS_PACKAGE_TOKEN"
       }
     }
   }
