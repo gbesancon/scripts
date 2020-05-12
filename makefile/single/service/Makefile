@@ -1,4 +1,4 @@
-include ./project.Makefile
+include ${SCRIPTS_DIR}/makefile/single/Makefile
 
 DOCKER_IMAGE_PREFIX=gbesancon
 ENVIRONMENT_NAME=localhost

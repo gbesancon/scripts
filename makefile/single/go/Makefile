@@ -1,4 +1,4 @@
-include ../scripts/makefile/single/Makefile
+include ${SCRIPTS_DIR}/makefile/single/Makefile
 
 .PHONY: vendor-clean
 vendor-clean:

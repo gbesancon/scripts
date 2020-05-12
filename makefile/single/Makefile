@@ -1,4 +1,5 @@
-PROJECT_NAME=
+#SCRIPTS_DIR=
+#PROJECT_NAME=
 VERSION=0.0.1
 
 all: ci-build
