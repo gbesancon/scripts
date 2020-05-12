@@ -14,7 +14,9 @@ publishing {
     }
   }
   publications {
-    project(MavenPublication) {
+    projectPublication(MavenPublication) {
+      groupId = project.group
+      artifactId = project.name
       version = mavenVersion
       from components.java
       if(rootProject.packageSourcesEnabled == 'true') {
