@@ -6,10 +6,10 @@ publishing {
   repositories {
     maven {
       name "GithubGbesancon"
-      url "https://maven.pkg.github.com/gbesancon"
+      url "https://maven.pkg.github.com/gbesancon/projects"
       credentials {
         username "gbesancon"
-        password "$System.env.GBESANCON_GITHUB_AZURE_DEVOPS_PACKAGE_TOKEN"
+        password "$System.env.GBESANCON_GITHUB_PACKAGE_TOKEN"
       }
     }
   }
