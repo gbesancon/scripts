@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source $(dirname $(realpath ${BASH_SOURCE[0]}))/bash.sh
+source $(dirname $(realpath ${BASH_SOURCE[0]}))/../bash.sh
 
 git_clone_repository()
 {
@@ -121,4 +121,26 @@ git_push()
     result=$git_push_result
   fi
   return $result
+}
+
+# https://help.github.com/en/github/using-git/changing-author-info
+git_change_author_info()
+{
+  OLD_EMAIL="$1"
+  NEW_EMAIL="$2"
+  NEW_NAME="$3"
+
+  execute_command git filter-branch --env-filter '
+  if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+  then
+  export GIT_COMMITTER_NAME="$NEW_NAME"
+  export GIT_COMMITTER_EMAIL="$NEW_EMAIL"
+  fi
+  if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+  then
+  export GIT_AUTHOR_NAME="$NEW_NAME"
+  export GIT_AUTHOR_EMAIL="$NEW_EMAIL"
+  fi
+  ' --tag-name-filter cat -- --branches --tags
+  
 }
