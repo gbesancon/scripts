@@ -9,6 +9,9 @@ DOCKER_RUN_GRADLE_COMMAND=docker run --rm -v ${SOURCE_DIR}:/usr/src/${PROJECT_NA
 
 setup-pipeline:
 	export PROJECT_NAME=${PROJECT_NAME} && envsubst < ${SCRIPTS_DIR}/makefile/single/java/azure-pipelines.yml > ${SOURCE_DIR}/azure-pipelines.yml
+	sed -i '1i########################################' ${SOURCE_DIR}/azure-pipelines.yml
+	sed -i '1i###   FILE GENERATED FROM TEMPLATE   ###' ${SOURCE_DIR}/azure-pipelines.yml
+	sed -i '1i########################################' ${SOURCE_DIR}/azure-pipelines.yml
 
 setup:
 	bash ${SCRIPTS_DIR}/makefile/single/java/install_jdk.sh oracle ${JAVA_VERSION}
