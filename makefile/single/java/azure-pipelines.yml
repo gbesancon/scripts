@@ -6,6 +6,7 @@ trigger:
     include:
     - ${PROJECT_NAME}/*
     - scripts
+    - GitVersion.yml
 
 pool:
   vmImage: 'ubuntu-latest'
