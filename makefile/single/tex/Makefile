@@ -2,6 +2,12 @@ include ${SCRIPTS_DIR}/makefile/single/Makefile
 
 PDFS=$(TEXS:.tex=.pdf)
 
+setup-pipeline:
+	export PROJECT_NAME=${PROJECT_NAME} && envsubst < ${SCRIPTS_DIR}/makefile/single/tex/azure-pipelines.yml > azure-pipelines.yml
+	sed -i '1i########################################' azure-pipelines.yml
+	sed -i '1i###   FILE GENERATED FROM TEMPLATE   ###' azure-pipelines.yml
+	sed -i '1i########################################' azure-pipelines.yml
+
 clean:
 	rm -f $(PDFS) $(TEXS:.tex=.aux) $(TEXS:.tex=.log) $(TEXS:.tex=.out) $(TEXS:.tex=.synctex.gz) $(TEXS:.tex=.tex.log)
 
