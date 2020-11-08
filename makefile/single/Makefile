@@ -6,6 +6,9 @@ VERSION=0.0.1
 
 all: ci-build
 
+.PHONY: setup-pipeline
+setup-pipeline:
+
 .PHONY: setup
 setup:
 
@@ -18,6 +21,9 @@ build-dev:
 .PHONY: build
 build:
 
+.PHONY: test
+test:
+
 .PHONY: publish-dev
 publish-dev:
 
@@ -26,3 +32,6 @@ publish:
 
 .PHONY: ci-build-dev
 ci-build-dev:
+
+.PHONY: ci-build
+ci-build:

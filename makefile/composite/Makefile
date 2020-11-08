@@ -1,5 +1,15 @@
 all: ci-build
 
+.PHONY: setup-pipeline
+setup-pipeline:
+	for project_name in ${PROJECT_NAMES} ; do \
+		$(MAKE) -C $$project_name $@ ; \
+		make_result=$$? ; \
+		if [ $$make_result -ne 0 ] ; then \
+			exit $$make_result ; \
+		fi ; \
+	done
+
 .PHONY: setup
 setup:
 	for project_name in ${PROJECT_NAMES} ; do \
@@ -42,6 +52,16 @@ build:
 
 .PHONY: test
 test:
+	for project_name in ${PROJECT_NAMES} ; do \
+		$(MAKE) -C $$project_name $@ ; \
+		make_result=$$? ; \
+		if [ $$make_result -ne 0 ] ; then \
+			exit $$make_result ; \
+		fi ; \
+	done
+
+.PHONY: ci-build-dev
+ci-build-dev: 
 	for project_name in ${PROJECT_NAMES} ; do \
 		$(MAKE) -C $$project_name $@ ; \
 		make_result=$$? ; \

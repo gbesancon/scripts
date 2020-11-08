@@ -7,6 +7,9 @@ SOURCE_DIR=$(shell pwd | sed 's/\/mnt\/\(.\)/\1:/g')
 # https://hub.docker.com/_/openjdk/
 DOCKER_RUN_GRADLE_COMMAND=docker run --rm -v ${SOURCE_DIR}:/usr/src/${PROJECT_NAME} -v ${SOURCE_DIR}/${SCRIPTS_DIR}:/usr/src/scripts -w /usr/src/${PROJECT_NAME} -e GBESANCON_GITHUB_PACKAGE_TOKEN="${GBESANCON_GITHUB_PACKAGE_TOKEN}" openjdk:${JAVA_VERSION} ./gradlew -Pversion=${VERSION}
 
+setup-pipeline:
+	export PROJECT_NAME=${PROJECT_NAME} && envsubst < ${SCRIPTS_DIR}/makefile/single/java/azure-pipelines.yml > ${SOURCE_DIR}/azure-pipelines.yml
+
 setup:
 	bash ${SCRIPTS_DIR}/makefile/single/java/install_jdk.sh oracle ${JAVA_VERSION}
 
