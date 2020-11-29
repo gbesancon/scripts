@@ -124,7 +124,7 @@ git_push()
 }
 
 # https://help.github.com/en/github/using-git/changing-author-info
-git_change_author_info()
+git_change_author_info_by_email()
 {
   OLD_EMAIL="$1"
   NEW_EMAIL="$2"
@@ -137,6 +137,27 @@ git_change_author_info()
   export GIT_COMMITTER_EMAIL="'"$NEW_EMAIL"'"
   fi
   if [ "$GIT_AUTHOR_EMAIL" = "'"$OLD_EMAIL"'" ]
+  then
+  export GIT_AUTHOR_NAME="'"$NEW_NAME"'"
+  export GIT_AUTHOR_EMAIL="'"$NEW_EMAIL"'"
+  fi
+  ' --tag-name-filter cat -- --branches --tags
+  git push --force --tags origin 'refs/heads/*'
+}
+
+git_change_author_info_by_name()
+{
+  OLD_NAME="$1"
+  NEW_EMAIL="$2"
+  NEW_NAME="$3"
+
+  git filter-branch -f --env-filter '
+  if [ "$GIT_COMMITTER_NAME" = "'"$OLD_NAME"'" ]
+  then
+  export GIT_COMMITTER_NAME="'"$NEW_NAME"'"
+  export GIT_COMMITTER_EMAIL="'"$NEW_EMAIL"'"
+  fi
+  if [ "$GIT_AUTHOR_NAME" = "'"$OLD_NAME"'" ]
   then
   export GIT_AUTHOR_NAME="'"$NEW_NAME"'"
   export GIT_AUTHOR_EMAIL="'"$NEW_EMAIL"'"
