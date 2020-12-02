@@ -8,6 +8,9 @@ setup-pipeline:
 	sed -i '1i###   FILE GENERATED FROM TEMPLATE   ###' azure-pipelines.yml
 	sed -i '1i########################################' azure-pipelines.yml
 
+setup:
+	bash ${SCRIPTS_DIR}/makefile/single/tex/setup.sh
+
 clean:
 	rm -f $(PDFS) $(TEXS:.tex=.aux) $(TEXS:.tex=.log) $(TEXS:.tex=.out) $(TEXS:.tex=.synctex.gz) $(TEXS:.tex=.tex.log)
 
@@ -22,7 +25,6 @@ build: $(PDFS)
 	if [ ! -f $@ ] ; then \
 		exit 1 ; \
 	fi
-	#sudo docker run --rm -v `pwd`:/doc/ thomasweise/texlive /bin/pdflatex.sh $< > $<.log
 	rm -f $(<:.tex=.aux) $(<:.tex=.out) $(<:.tex=.synctex.gz) $(<:.tex=.log) $(<:.tex=.tex.log)
 
 ci-build-dev: clean build-dev
