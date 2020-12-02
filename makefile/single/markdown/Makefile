@@ -1,4 +1,5 @@
 include ${SCRIPTS_DIR}/makefile/single/Makefile
+VERSION=0.0.1-SNAPSHOT
 
 setup-pipeline:
 	export PROJECT_NAME=${PROJECT_NAME} && envsubst < ${SCRIPTS_DIR}/makefile/single/markdown/azure-pipelines.yml > azure-pipelines.yml
